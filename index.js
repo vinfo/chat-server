@@ -22,8 +22,12 @@ io.on("connection", (socket) => {
     let targetId = msg.targetId;
     if (clients[targetId]) clients[targetId].emit("message", msg);
   });
+  socket.on('join-room', ( user, handleError ) => {
+    let error = 'usuario no detectado'
+    return handleError(error )
+  });
 });
 
 server.listen(port, "0.0.0.0", () => {
-  console.log("server started");
+  console.log("Servidor inicializado");
 });
