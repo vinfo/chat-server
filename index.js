@@ -10,8 +10,8 @@ app.use(express.json());
 var clients = {};
 
 io.on("connection", (socket) => {
-  console.log("connetetd");
-  console.log(socket.id, "has joined");
+  console.log("connected");
+  console.log("Se ha unido el ID: "+socket.id);
   socket.on("signin", (id) => {
     console.log(id);
     clients[id] = socket;
