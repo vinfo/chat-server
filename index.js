@@ -27,7 +27,7 @@ io.on("connection", (socket) => {
       socket.connect();
     }
     console.log("Usuario ("+socket.id+") desconectado.");
-    delete users[socket.id]; 
+    delete clients[socket.id]; 
   });  
 });
 
