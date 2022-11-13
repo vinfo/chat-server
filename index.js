@@ -18,18 +18,17 @@ io.on("connection", (socket) => {
     //console.log(clients);
   });
 
-  io.sockets.emit("online", data.id_user);
-
   socket.on("message", (msg) => {
     console.log(msg);
     let targetId = msg.targetId;
     if (clients[targetId]) clients[targetId].emit("message", msg);
   });
+
   socket.on("disconnect", (msg) => {
     console.log("Usuario ("+clients[socket.id_user]+") desconectado.");
-    io.sockets.emit("offline", socket.id_user);
+    //io.sockets.emit("offline", socket.id_user);
     delete clients[socket.id_user];
-    socket.disconnect();
+    //socket.disconnect();
   });  
 });
 
