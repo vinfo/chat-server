@@ -12,8 +12,8 @@ var clients = {};
 io.on("connection", (socket) => {
   console.log("connected");
   console.log("Se ha unido el ID: "+socket.id);  
+
   var id_user = socket.handshake.query.id_user;
-  if (!clients[id_user]) clients[id_user] = [];
 
   socket.on("login", (data) => {
     console.log("Usuario "+data.id_user+", conectado. ("+data.last_connection+")");
@@ -28,12 +28,10 @@ io.on("connection", (socket) => {
   socket.on("disconnect", (msg) => {
     if (msg === "io server disconnect") {      
       socket.connect();
-    }   
-    if (clients[id_user].length === 0) {
-      console.log("Usuario desconectado: "+id_user);
-      io.sockets.emit("offline", id_user);
-      delete clients[id_user];
-    }   
+    }    
+    console.log("Usuario desconectado: "+id_user);
+    io.sockets.emit("offline", id_user);
+    delete clients[id_user];
     socket.disconnect();
   });  
 });
