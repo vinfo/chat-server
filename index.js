@@ -18,15 +18,10 @@ io.on("connection", (socket) => {
     console.log(clients);
   });
   socket.on("message", (msg) => {
-    console.log(msg+" | "+hash);
+    console.log(msg);
     let targetId = msg.targetId;
-    if (clients[targetId]) clients[targetId].emit("message",msg);
+    if (clients[targetId]) clients[targetId].emit("message", msg);
   });
-/*   socket.on('disconnect', function () {
-    socket.sockets.emit('Usuario', socket.id + ' se ha desconectado del servidor.');
-    delete clients[socket.id];
-    socket.sockets.emit('logout', clients);
-  }); */  
 });
 
 server.listen(port, "0.0.0.0", () => {
