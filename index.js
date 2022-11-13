@@ -24,6 +24,10 @@ io.on("connection", (socket) => {
 
   io.sockets.emit("online", id_user);
 
+  socket.on("getUsers", (msg) => {
+    io.sockets.clients();
+  });  
+
   socket.on("message", (msg) => {
     console.log(msg);
     let targetId = msg.targetId;
