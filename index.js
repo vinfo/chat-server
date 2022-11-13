@@ -27,7 +27,7 @@ io.on("connection", (socket) => {
   });
   socket.on('disconnect', function () {
     socket.sockets.emit('Usuario', socket.id + ' se ha desconectado del servidor.');
-    delete people[socket.id];
+    delete clients[socket.id];
     socket.sockets.emit('logout', clients);
   });  
 });
