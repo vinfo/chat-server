@@ -13,22 +13,17 @@ io.on("connection", (socket) => {
   console.log("connected");
   console.log("Se ha unido el ID: "+socket.id);
   socket.on("login", (data) => {
-    console.log("Usuario "+data.id_user+", conectado. ("+data.last_connection+")");
+    console.log("Usuario "+data.id_user+", conectado.");
     clients[data.id_user] = socket;
-    //console.log(clients);
+    console.log(clients);
   });
-
   socket.on("message", (msg) => {
     console.log(msg);
     let targetId = msg.targetId;
     if (clients[targetId]) clients[targetId].emit("message", msg);
   });
-
   socket.on("disconnect", (msg) => {
     console.log("Usuario ("+clients[socket.id_user]+") desconectado.");
-    //io.sockets.emit("offline", socket.id_user);
-    delete clients[socket.id_user];
-    //socket.disconnect();
   });  
 });
 
