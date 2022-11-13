@@ -21,6 +21,9 @@ io.on("connection", (socket) => {
     id_user = data.id_user;
     console.log(clients);
   });
+
+  io.sockets.emit("online", id_user);
+
   socket.on("message", (msg) => {
     console.log(msg);
     let targetId = msg.targetId;
