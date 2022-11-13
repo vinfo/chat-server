@@ -1,5 +1,4 @@
 const express = require("express");
-var crypto = require('crypto');
 var http = require("http");
 const app = express();
 const port = process.env.PORT || 5000;
@@ -9,8 +8,6 @@ var io = require("socket.io")(server);
 //middlewre
 app.use(express.json());
 var clients = {};
-var _key = 'eThWmZq4t7w!z%C*F-JaNdRfUjXn2r5u';
-var hash = crypto.createHash('md5').update(_key).digest('hex');
 
 io.on("connection", (socket) => {
   console.log("connected");
@@ -23,7 +20,7 @@ io.on("connection", (socket) => {
   socket.on("message", (msg) => {
     console.log(msg+" | "+hash);
     let targetId = msg.targetId;
-    if (clients[targetId]) clients[targetId].emit("message", { msg: msg, hash:hash });
+    if (clients[targetId]) clients[targetId].emit("message",msg);
   });
   socket.on('disconnect', function () {
     socket.sockets.emit('Usuario', socket.id + ' se ha desconectado del servidor.');
