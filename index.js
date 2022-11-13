@@ -12,9 +12,9 @@ var clients = {};
 io.on("connection", (socket) => {
   console.log("connected");
   console.log("Se ha unido el ID: "+socket.id);
-  socket.on("signin", (id) => {
-    console.log(id);
-    clients[id] = socket;
+  socket.on("login", (data) => {
+    console.log("Usuario "+data.id_user+", conectado.");
+    clients[data.id_user] = socket;
     console.log(clients);
   });
   socket.on("message", (msg) => {
@@ -22,6 +22,10 @@ io.on("connection", (socket) => {
     let targetId = msg.targetId;
     if (clients[targetId]) clients[targetId].emit("message", msg);
   });
+  socket.on("disconnect", (msg) => {
+    console.log("Usuario ("+clients[socket.id_user]+") desconectado.");
+    delete clients[socket.id_user];
+  });  
 });
 
 server.listen(port, "0.0.0.0", () => {
