@@ -14,6 +14,7 @@ io.on("connection", (socket) => {
   console.log("Se ha unido el ID: "+socket.id);  
 
   var id_user = 0;
+  io.sockets.emit("online", id_user);
 
   socket.on("login", (data) => {
     console.log("Usuario "+data.id_user+", conectado. ("+data.last_connection+")");
@@ -22,10 +23,15 @@ io.on("connection", (socket) => {
     console.log(clients);
   });
 
-  io.sockets.emit("online", id_user);
-
-  socket.on("getUsers", (msg) => {
-    io.sockets.clients();
+  socket.on("isOnline", (msg) => {    
+    let flag = false;
+    let exists="Off";
+    if (clients[msg]){
+      flag = true;
+      let exists="On";   
+    }
+    console.log("Usuario ("+msg+"), esta online: "+exists);
+    return flag;
   });  
 
   socket.on("message", (msg) => {
