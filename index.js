@@ -13,7 +13,7 @@ io.on("connection", (socket) => {
   console.log("connected");
   console.log("Se ha unido el ID: "+socket.id);
   socket.on("login", (data) => {
-    console.log("Usuario "+data.id_user+", conectado.");
+    console.log("Usuario "+data.id_user+", conectado. ("+data.last_connection+")");
     clients[data.id_user] = socket;
     console.log(clients);
   });
@@ -23,7 +23,10 @@ io.on("connection", (socket) => {
     if (clients[targetId]) clients[targetId].emit("message", msg);
   });
   socket.on("disconnect", (msg) => {
-    console.log("Usuario ("+clients[socket.id_user]+") desconectado.");
+    if (reason === "io server disconnect") {      
+      socket.connect();
+    }
+    console.log("Usuario ("+clients[data.id_user]+") desconectado.");
   });  
 });
 
