@@ -11,8 +11,10 @@ var clients = {};
 
 io.on("connection", (socket) => {
   console.log("connected");
-  console.log("Se ha unido el ID: "+socket.id);
-  let id_user = socket.handshake.query.id_user; // GET USER ID
+  console.log("Se ha unido el ID: "+socket.id);  
+  var id_user = socket.handshake.query.id_user;
+  if (!clients[id_user]) clients[id_user] = [];
+
   socket.on("login", (data) => {
     console.log("Usuario "+data.id_user+", conectado. ("+data.last_connection+")");
     clients[data.id_user] = socket;
