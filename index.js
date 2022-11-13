@@ -26,7 +26,8 @@ io.on("connection", (socket) => {
     if (msg === "io server disconnect") {      
       socket.connect();
     }
-    console.log("Usuario ("+msg.id+") desconectado.");
+    console.log("Usuario ("+clients[socket.id]+") desconectado.");
+    delete users[socket.id]; 
   });  
 });
 
