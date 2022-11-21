@@ -31,7 +31,7 @@ io.on("connection", (socket) => {
       let exists="On";   
     }
     console.log("Fecha/hora: "+msg.last_connection+", Usuario ("+msg.id_user+"), esta online: "+exists);
-    return flag;
+    return {"flag":flag,"id_user":msg.id_user,"last_connection":msg.last_connection};
   });  
 
   socket.on("message", (msg) => {
