@@ -30,7 +30,7 @@ io.on("connection", (socket) => {
       flag = true;
       let exists="On";   
     }
-    console.log("Usuario ("+msg+"), esta online: "+exists);
+    console.log("Fecha/hora: "+msg.last_connection+", Usuario ("+msg.id_user+"), esta online: "+exists);
     return flag;
   });  
 
