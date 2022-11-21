@@ -21,6 +21,7 @@ io.on("connection", (socket) => {
     clients[data.id_user] = socket;
     id_user = data.id_user;
     console.log(clients);
+    return [{id_user:data.id_user,last_connection:data.last_connection}];
   });
 
   socket.on("isOnline", (msg) => {    
