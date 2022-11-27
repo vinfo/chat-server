@@ -8,18 +8,17 @@ var io = require("socket.io")(server);
 //middlewre
 app.use(express.json());
 var clients = {};
+var id_user = 0;
 
 io.on("connection", (socket) => {
   console.log("connected");
-  console.log("Se ha unido el ID: "+socket.id);  
-
-  var id_user = 0;
+  console.log("Se ha unido el ID: "+socket.id);
+  id_user = data.id_user;
   io.sockets.emit("online", id_user);
 
   socket.on("login", (data) => {
-    console.log("Usuario "+data.id_user+", conectado. ("+data.last_connection+")");
-    clients[data.id_user] = socket;
-    id_user = data.id_user;
+    console.log("Usuario: "+ id_user +", conectado. ("+data.last_connection+")");
+    clients[id_user] = socket;
     console.log(clients);
   });
 
