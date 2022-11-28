@@ -14,6 +14,7 @@ io.on("connection", (socket) => {
 
   console.log("Se ha unido el ID: "+socket.id+", ID user: "+socket.handshake.query['id_user']);
   clients[id_user] = socket;
+  console.log("Array Usuario : "+socket.handshake.query['id_user']+", Socket: "+clients[id_user].socketID);
   
   io.sockets.emit("online", id_user);
 
