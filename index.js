@@ -21,7 +21,7 @@ io.on("connection", (socket) => {
     clients[data.id_user] = socket;
     id_user = data.id_user;
     for(let i=0;i<clients.lenght;i++){
-      console.log(clients[i]);
+      console.log(clients[i].toString());
     };
     console.log("Usuarios conectados actualmente: "+clients.toString());
   });
