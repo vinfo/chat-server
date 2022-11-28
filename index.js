@@ -42,6 +42,7 @@ io.on("connection", (socket) => {
     if (clients[targetId]) clients[targetId].emit("message", msg);
   });
   socket.on("disconnect", (msg) => {
+    console.log("Desconectado: "+msg);
     if (msg === "io server disconnect") {      
       socket.connect();
     }    
