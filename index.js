@@ -8,9 +8,10 @@ var io = require("socket.io")(server);
 //middlewre
 app.use(express.json());
 var clients = {};
-var id_user = 0;
+
 
 io.on("connection", (socket) => {
+  var id_user = 0;
   console.log("connected");
   console.log("Se ha unido el ID: "+socket.id);
   id_user = data.id_user;
