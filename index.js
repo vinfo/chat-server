@@ -10,11 +10,10 @@ app.use(express.json());
 var clients = {};
 
 io.on("connection", (socket) => {
+  var id_user = 0;
   console.log("connected");
   console.log("Se ha unido el ID: "+socket.id);  
-
-  var id_user = 0;
-  io.sockets.emit("online", id_user);
+  io.sockets.emit("online", socket.id);  
 
   socket.on("login", (data) => {
     console.log("Usuario "+data.id_user+", conectado. ("+data.last_connection+")");
