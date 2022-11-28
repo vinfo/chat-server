@@ -9,17 +9,17 @@ var io = require("socket.io")(server);
 app.use(express.json());
 var clients = {};
 
-
 io.on("connection", (socket) => {
-  var id_user = 0;
   console.log("connected");
-  console.log("Se ha unido el ID: "+socket.id);
-  id_user = data.id_user;
+  console.log("Se ha unido el ID: "+socket.id);  
+
+  var id_user = 0;
   io.sockets.emit("online", id_user);
 
   socket.on("login", (data) => {
-    console.log("Usuario: "+ id_user +", conectado. ("+data.last_connection+")");
-    clients[id_user] = socket;
+    console.log("Usuario "+data.id_user+", conectado. ("+data.last_connection+")");
+    clients[data.id_user] = socket;
+    id_user = data.id_user;
     console.log(clients);
   });
 
