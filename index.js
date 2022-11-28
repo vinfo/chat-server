@@ -37,7 +37,7 @@ io.on("connection", (socket) => {
   socket.on("message", (msg) => {
     console.log(msg);
     let targetId = msg.targetId;
-    console.log("Mensaje para: "+targetId+", Socket ID: "+socket.id);
+    console.log("Mensaje para: "+targetId+", Desde "+sourceId+" (Socket ID: "+socket.id+")");
     if (clients[targetId]) clients[targetId].emit("message", msg);
   });
   socket.on("disconnect", (msg) => {
