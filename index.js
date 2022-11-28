@@ -11,16 +11,16 @@ var clients = {};
 
 io.on("connection", (socket) => {
   console.log("connected");
-  console.log("Se ha unido el Socket ID: "+socket.id);  
+  console.log("Se ha unido el ID: "+socket.id);  
 
   var id_user = 0;
-  io.sockets.emit("online", socket.id);
+  io.sockets.emit("online", id_user);
 
   socket.on("login", (data) => {
     console.log("Usuario "+data.id_user+", conectado. ("+data.last_connection+")");
     clients[data.id_user] = socket;
     id_user = data.id_user;
-    console.log("Usuarios conectados actualmente: "+clients.toString());
+    console.log(clients);
   });
 
   socket.on("isOnline", (msg) => {    
