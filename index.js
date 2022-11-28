@@ -17,13 +17,13 @@ io.on("connection", (socket) => {
   console.log("Array Usuario : "+socket.handshake.query['id_user']+", Socket: "+clients[id_user]["connected"]);
   
   io.sockets.emit("online", id_user);
-  console.log("Clientes Actuales: "+clients);
+  console.log("Clientes Actuales: ",clients);
 
   socket.on("login", (data) => {
     console.log("Login: Usuario "+data.id_user+", conectado. ("+data.last_connection+")");
     clients[data.id_user] = socket;
     id_user = data.id_user;
-    console.log(clients);
+    //console.log(clients);
   });
 
   socket.on("isOnline", (msg) => {    
