@@ -20,9 +20,6 @@ io.on("connection", (socket) => {
     console.log("Usuario "+data.id_user+", conectado. ("+data.last_connection+")");
     clients[data.id_user] = socket;
     id_user = data.id_user;
-    for(let i=0;i<clients.lenght;i++){
-      console.log(clients[i].toString());
-    };
     console.log("Usuarios conectados actualmente: "+clients.toString());
   });
 
