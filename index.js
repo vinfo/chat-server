@@ -10,8 +10,10 @@ app.use(express.json());
 var clients = {};
 
 io.on("connection", (socket) => {
-  console.log("Se ha unido el ID: "+socket.id+", ID user: "+socket.handshake.query['id_user']); 
-  var id_user = 0;
+  var id_user = socket.handshake.query['id_user'];
+  console.log("Se ha unido el ID: "+socket.id+", ID user: "+id_user);
+  clients[id_user] = socket;
+  
   io.sockets.emit("online", id_user);
 
   socket.on("login", (data) => {
