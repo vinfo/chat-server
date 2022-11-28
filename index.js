@@ -26,13 +26,13 @@ io.on("connection", (socket) => {
 
   socket.on("isOnline", (msg) => {    
     let flag = false;
-    let exists="Off";
+    let exists="On";
     if (clients[msg.id_user]){
       flag = true;
-      let exists="On";   
+      let exists="off";   
     }
-    console.log("Fecha/hora: "+msg.last_connection+", Usuario ("+msg.id_user+"), esta online: "+exists);
-    return [{"flag":flag,"id_user":msg.id_user,"last_connection":msg.last_connection}];
+    console.log("Fecha/hora: "+msg.last_connection+", Usuario ("+msg.id_user+"), esta online: "+exists+", SocketID: "+socket.id);
+    return [{"flag":flag,"id_user":msg.id_user,"last_connection":msg.last_connection,"socketID":socket.id}];
   });  
 
   socket.on("message", (msg) => {
