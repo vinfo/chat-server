@@ -14,7 +14,7 @@ io.on("connection", (socket) => {
   console.log("Se ha unido el Socket ID: "+socket.id);   
   io.sockets.emit("online", socket.id);
 
-  let id_user = 0;
+  var id_user = 0;
 
   socket.on("login", (data) => {
     console.log("Usuario "+data.id_user+", conectado. ("+data.last_connection+")");
