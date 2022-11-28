@@ -22,9 +22,9 @@ io.on("connection", (socket) => {
     id_user = data.id_user;
     let users="";
     clients.forEach(function (arrayItem) {
-      users += arrayItem;
+      console.log(arrayItem);
     });
-    console.log("Usuarios conectados actualmente: "+users.toString());
+    console.log("Usuarios conectados actualmente: "+clients.toString());
   });
 
   socket.on("isOnline", (msg) => {    
