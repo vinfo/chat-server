@@ -40,7 +40,7 @@ io.on("connection", (socket) => {
     console.log(msg);
     let targetId = msg.targetId;
     let sourceId = msg.sourceId;
-    console.log("Mensaje para: "+targetId+", Desde "+sourceId+" (Socket ID: "+socket.id+")");
+    console.log("Mensaje para: "+targetId+" ("+clients[targetId]+"), Desde "+sourceId+" (Socket ID: "+socket.id+")");
     //console.log("Clientes Actuales: ",clientsDebug);
     console.log("Clientes Actuales: ",clientsDebug);
     if (clients[targetId]) clients[targetId].emit("message", msg);
