@@ -19,7 +19,7 @@ io.on("connection", (socket) => {
   io.sockets.emit("online", id_user);  
 
   socket.on("login", (data) => {
-    console.log("Login: Usuario "+data.id_user+", conectado. ("+data.last_connection+")");
+    console.log("LOGIN: Usuario "+data.id_user+", conectado. ("+data.last_connection+", ID "+socket.id+")");
     clients[data.id_user] = socket;
     id_user = data.id_user;
     //console.log(clients);
