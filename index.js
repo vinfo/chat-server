@@ -16,8 +16,7 @@ io.on("connection", (socket) => {
   console.log("Se ha unido el ID: "+socket.id+", ID user: "+socket.handshake.query['id_user']);
   //console.log("Array Usuario : "+socket.handshake.query['id_user']+", Socket: "+clients[id_user]["connected"]);
   clientsDebug[id_user]= socket.id;
-  io.sockets.emit("online", id_user);
-  console.log("Clientes Actuales: ",clientsDebug);
+  io.sockets.emit("online", id_user);  
 
   socket.on("login", (data) => {
     console.log("Login: Usuario "+data.id_user+", conectado. ("+data.last_connection+")");
@@ -43,7 +42,7 @@ io.on("connection", (socket) => {
     let sourceId = msg.sourceId;
     console.log("Mensaje para: "+targetId+", Desde "+sourceId+" (Socket ID: "+socket.id+")");
     //console.log("Clientes Actuales: ",clientsDebug);
-    console.log("Clientes socket: ",clients);
+    console.log("Clientes Actuales: ",clientsDebug);
     if (clients[targetId]) clients[targetId].emit("message", msg);
   });
 
