@@ -41,7 +41,6 @@ io.on("connection", (socket) => {
     let targetId = msg.targetId;
     let sourceId = msg.sourceId;
     console.log("Mensaje para: "+targetId+" ("+clients[targetId]["id"]+"), Desde "+sourceId+" (Socket ID: "+socket.id+")");
-    console.log("Destino: ",clients[targetId]);
     console.log("Clientes Actuales: ",clientsDebug);
     if (clients[targetId]) clients[targetId].emit("message", msg);
   });
