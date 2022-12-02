@@ -58,5 +58,5 @@ io.on("connection", (socket) => {
 });
 
 server.listen(port, "0.0.0.0", () => {
-  console.log("Servidor inicializado");
+  console.log("Servidor inicializado: ",port);
 });
