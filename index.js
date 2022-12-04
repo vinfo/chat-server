@@ -33,7 +33,7 @@ io.on("connection", (socket) => {
       let exists="On";   
     }
     console.log("Usuario ("+msg.id_user+"), esta online: "+exists+", SocketID: "+socket.id);
-    if (clients[msg.id_user])io.sockets.emit("isOnline", id_user);
+    if (clients[msg.id_user])io.sockets.emit("isOnline", msg.id_user);
   });  
 
   socket.on("message", (msg) => {
