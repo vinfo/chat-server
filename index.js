@@ -53,10 +53,6 @@ io.on("connection", (socket) => {
     console.log("Usuario desconectado: "+id_user);
     io.sockets.emit("offline", id_user);
     delete clients[id_user];
-    const index = clients.indexOf(id_user);
-    if (index > -1) { 
-      clients.splice(index, 1);
-    }
     socket.disconnect();
   });  
 });
